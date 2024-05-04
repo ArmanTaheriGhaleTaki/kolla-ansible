@@ -30,4 +30,5 @@ jobs:
         uses: super-linter/super-linter@v6.4.1  # x-release-please-version
         env: 
           ANSIBLE_CONFIG_FILE: .ansible-lint
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: .yamllint
