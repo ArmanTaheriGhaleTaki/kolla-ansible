@@ -76,6 +76,7 @@ cp ~/venv/share/kolla-ansible/ansible/inventory/multinode .
 Install Ansible Galaxy dependencies:
 ```
 kolla-ansible install-deps
+sudo pip install docker
 ```
 Prepare initial configuration
 
