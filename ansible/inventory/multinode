@@ -209,7 +209,7 @@ common
 common
 
 [opensearch:children]
-monitoring
+compute
 
 # Opensearch dashboards
 [opensearch-dashboards:children]
