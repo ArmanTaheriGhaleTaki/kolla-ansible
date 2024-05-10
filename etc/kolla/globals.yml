@@ -45,7 +45,7 @@ workaround_ansible_issue_8743: yes
 #config_strategy: "COPY_ALWAYS"
 
 # Valid options are ['centos', 'debian', 'rocky', 'ubuntu']
-#kolla_base_distro: "rocky"
+#kolla_base_distro: "ubuntu"
 
 # Do not override this unless you know what you are doing.
 #openstack_release: "master"
@@ -90,7 +90,7 @@ workaround_ansible_issue_8743: yes
 ##################
 
 # Valid options are [ docker, podman ]
-#kolla_container_engine: docker
+kolla_container_engine: docker
 
 
 ################
@@ -105,7 +105,7 @@ workaround_ansible_issue_8743: yes
 # docker_registry_password is set in the passwords.yml file.
 
 # Namespace of images:
-#docker_namespace: "kolla"
+docker_namespace: "openstack.kolla"
 
 # Docker client timeout in seconds.
 #docker_client_timeout: 120
@@ -169,7 +169,7 @@ workaround_ansible_issue_8743: yes
 # if vmware_nsxv3 or vmware_nsxp is selected, enable_openvswitch MUST be set to "no" (default is yes)
 # Do note linuxbridge is *EXPERIMENTAL* in Neutron since Zed and it requires extra tweaks to config to be usable.
 # For details, see: https://docs.openstack.org/neutron/latest/admin/config-experimental-framework.html
-#neutron_plugin_agent: "openvswitch"
+neutron_plugin_agent: "ovn"
 
 # Valid options are [ internal, infoblox ]
 #neutron_ipam_driver: "internal"
@@ -234,7 +234,7 @@ workaround_ansible_issue_8743: yes
 # Configures firewalld on both ubuntu and centos systems
 # for enabled services.
 # firewalld should be installed beforehand.
-# disable_firewall: "true"
+ disable_firewall: "true"
 # enable_external_api_firewalld: "false"
 # external_api_firewalld_zone: "public"
 
@@ -304,17 +304,17 @@ workaround_ansible_issue_8743: yes
 ###################
 # Use these options to set the various log levels across all OpenStack projects
 # Valid options are [ True, False ]
-#openstack_logging_debug: "False"
+openstack_logging_debug: "True"
 
 # Enable core OpenStack services. This includes:
 # glance, keystone, neutron, nova, heat, and horizon.
-#enable_openstack_core: "yes"
+enable_openstack_core: "yes"
 
 # These roles are required for Kolla to be operation, however a savvy deployer
 # could disable some of these required roles and run their own services.
 #enable_glance: "{{ enable_openstack_core | bool }}"
 #enable_hacluster: "no"
-#enable_haproxy: "yes"
+enable_haproxy: "no"
 #enable_keepalived: "{{ enable_haproxy | bool }}"
 #enable_keystone: "{{ enable_openstack_core | bool }}"
 #enable_mariadb: "yes"
@@ -330,7 +330,7 @@ workaround_ansible_issue_8743: yes
 #enable_ceilometer: "no"
 #enable_ceilometer_ipmi: "no"
 #enable_cells: "no"
-#enable_central_logging: "no"
+enable_central_logging: "yes"
 #enable_ceph_rgw: "no"
 #enable_ceph_rgw_loadbalancer: "{{ enable_ceph_rgw | bool }}"
 #enable_cinder: "no"
@@ -349,11 +349,11 @@ workaround_ansible_issue_8743: yes
 #enable_designate: "no"
 #enable_destroy_images: "no"
 #enable_etcd: "no"
-#enable_fluentd: "yes"
+enable_fluentd: "yes"
 #enable_fluentd_systemd: "{{ (enable_fluentd | bool) and (enable_central_logging | bool) }}"
 #enable_gnocchi: "no"
 #enable_gnocchi_statsd: "no"
-#enable_grafana: "no"
+enable_grafana: "yes"
 #enable_grafana_external: "{{ enable_grafana | bool }}"
 #enable_heat: "{{ enable_openstack_core | bool }}"
 #enable_horizon: "{{ enable_openstack_core | bool }}"
@@ -417,7 +417,7 @@ workaround_ansible_issue_8743: yes
 #enable_ovs_dpdk: "no"
 #enable_osprofiler: "no"
 #enable_placement: "{{ enable_nova | bool or enable_zun | bool }}"
-#enable_prometheus: "no"
+enable_prometheus: "yes"
 #enable_proxysql: "no"
 #enable_redis: "no"
 #enable_skyline: "no"
@@ -631,10 +631,10 @@ workaround_ansible_issue_8743: yes
 # Neutron - networking options
 ##############################
 # Enable distributed floating ip for OVN deployments
-#neutron_ovn_distributed_fip: "no"
+neutron_ovn_distributed_fip: "yes"
 
 # Enable DHCP agent(s) to use with OVN
-#neutron_ovn_dhcp_agent: "no"
+neutron_ovn_dhcp_agent: "yes"
 
 #############################
 # Horizon - Dashboard Options
@@ -776,7 +776,7 @@ workaround_ansible_issue_8743: yes
 #prometheus_external_labels:
 
 # List of extra parameters passed to prometheus. You can add as many to the list.
-#prometheus_cmdline_extras:
+prometheus_cmdline_extras: "--query.timeout=1m --storage.tsdb.retention.size=30GB"
 
 # List of extra parameters passed to cAdvisor. By default system cgroups
 # and container labels are not exposed to reduce time series cardinality.
