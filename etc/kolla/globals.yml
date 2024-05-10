@@ -45,7 +45,7 @@ workaround_ansible_issue_8743: yes
 #config_strategy: "COPY_ALWAYS"
 
 # Valid options are ['centos', 'debian', 'rocky', 'ubuntu']
-#kolla_base_distro: "ubuntu"
+kolla_base_distro: "ubuntu"
 
 # Do not override this unless you know what you are doing.
 #openstack_release: "master"
@@ -234,7 +234,7 @@ neutron_plugin_agent: "ovn"
 # Configures firewalld on both ubuntu and centos systems
 # for enabled services.
 # firewalld should be installed beforehand.
- disable_firewall: "true"
+disable_firewall: "true"
 # enable_external_api_firewalld: "false"
 # external_api_firewalld_zone: "public"
 
